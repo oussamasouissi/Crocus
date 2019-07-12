@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'welcome/homeAdmin'
   devise_for :users
   get 'welcome/home'
   root 'home#index'

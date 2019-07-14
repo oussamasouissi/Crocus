@@ -24,13 +24,21 @@
     <%= f.text_field :téléphone, autofocus: true, autocomplete: "email" %>
   </div>
   <div class="field">
+  <%= f.label :adresse %><br />
+  <%= f.text_field :adresse, autofocus: true, autocomplete: "email" %>
+</div>
+  <div class="field">
     <%= f.label :code_postal %><br />
     <%= f.text_field :code_postal, autofocus: true, autocomplete: "email" %>
   </div>
+
   <div class="field">
-    <%= f.label :sexe %><br />
-    <%= f.text_field :sexe, autofocus: true, autocomplete: "email" %>
+    <%= f.label "sexe" %><br />
+     <div class="controls">
+      <%= f.select(:sexe, options_for_select([['Monsieur','Monsieur'],['Madame','Madame']])) %>
+     </div>
   </div>
+  
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
@@ -38,7 +46,6 @@
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
-
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>

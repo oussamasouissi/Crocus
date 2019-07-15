@@ -12,6 +12,8 @@
 
   <body>
   <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" %>
+  <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"%>
+  <%= stylesheet_link_tag "http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css"%>
   <div class="container">
      <% flash.each do |name, msg| %>
          <%= content_tag(:div, msg, class: "alert-info") %>

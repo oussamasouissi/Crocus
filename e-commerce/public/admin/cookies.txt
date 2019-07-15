@@ -1,5 +1,0 @@
-# HTTrack Website Copier Cookie File
-# This file format is compatible with Netscape cookies
-dashboardpack.com	TRUE	/	FALSE	1999999999	PHPSESSID	7e6475678e7ed03ca36c503bdbc878ab
-dashboardpack.com	TRUE	/	FALSE	1999999999	wp_woocommerce_session_bd33e86e64c560d50208eb49b218d6ea	d62fa6d8fc35e7902146c133610135c9%7C%7C1562410122%7C%7C1562406522%7C%7C2857cf7d0822b4856fe14abaa0beae10
-

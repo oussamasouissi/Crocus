@@ -73,7 +73,7 @@
 		} );
 
 		// Free Text Option for Checkboxes and Radio Buttons
-		$( '.wpcf7-list-item.has-free-text', $form ).each( function() {
+		$( '.wpcf7-index-item.has-free-text', $form ).each( function() {
 			var $freetext = $( ':input.wpcf7-free-text', this );
 			var $wrap = $( this ).closest( '.wpcf7-form-control' );
 

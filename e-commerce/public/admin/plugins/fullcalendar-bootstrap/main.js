@@ -62,7 +62,7 @@ Docs & License: https://fullcalendar.io/
         // avoid `table` class b/c don't want margins/padding/structure. only border color.
         headerRow: 'table-bordered',
         dayRow: 'table-bordered',
-        // list view
+        // index view
         listView: 'card card-primary'
     };
     BootstrapTheme.prototype.baseIconClass = 'fa';

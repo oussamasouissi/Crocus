@@ -120,7 +120,7 @@ var ColVis = function( oDTSettings, oInit )
 		"button": null,
 
 		/**
-		 * Collection list node
+		 * Collection index node
 		 *  @property collection
 		 *  @type     Node
 		 *  @default  null
@@ -208,7 +208,7 @@ ColVis.prototype = {
 	},
 
 	/**
-	 * Rebuild the list of buttons for this instance (i.e. if there is a column
+	 * Rebuild the index of buttons for this instance (i.e. if there is a column
 	 * header update)
 	 *  @method  fnRebuild
 	 */
@@ -286,8 +286,8 @@ ColVis.prototype = {
 			"sName": "ColVis"
 		} );
 
-		/* If columns are reordered, then we need to update our exclude list and
-		 * rebuild the displayed list
+		/* If columns are reordered, then we need to update our exclude index and
+		 * rebuild the displayed index
 		 */
 		$(this.s.dt.oInstance).bind( 'column-reorder.dt', function ( e, oSettings, oReorder ) {
 			for ( i=0, iLen=that.s.aiExclude.length ; i<iLen ; i++ ) {
@@ -677,7 +677,7 @@ ColVis.prototype = {
 
 
 	/**
-	 * Create the element used to contain list the columns (it is shown and
+	 * Create the element used to contain index the columns (it is shown and
 	 * hidden as needed)
 	 *  @method  _fnDomCollection
 	 *  @returns {Node} div container for the collection
@@ -756,7 +756,7 @@ ColVis.prototype = {
 
 
 	/**
-	 * Show the show / hide list and the background
+	 * Show the show / hide index and the background
 	 *  @method  _fnCollectionShow
 	 *  @returns void
 	 *  @private
@@ -832,7 +832,7 @@ ColVis.prototype = {
 
 
 	/**
-	 * Hide the show / hide list and the background
+	 * Hide the show / hide index and the background
 	 *  @method  _fnCollectionHide
 	 *  @returns void
 	 *  @private
@@ -924,7 +924,7 @@ ColVis.defaults = {
 	buttonText: 'Show / hide columns',
 
 	/**
-	 * List of columns (integers) which should be excluded from the list
+	 * List of columns (integers) which should be excluded from the index
 	 *  @property aiExclude
 	 *  @type     array
 	 *  @default  []
@@ -998,7 +998,7 @@ ColVis.defaults = {
 	fnLabel: null,
 
 	/**
-	 * Indicate if the column list should be positioned by Javascript,
+	 * Indicate if the column index should be positioned by Javascript,
 	 * visually below the button or allow CSS to do the positioning
 	 *  @property bCssPosition
 	 *  @type     boolean

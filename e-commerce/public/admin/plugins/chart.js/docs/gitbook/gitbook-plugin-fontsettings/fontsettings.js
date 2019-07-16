@@ -143,8 +143,8 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
     function update() {
         var $book = gitbook.state.$book;
 
-        $('.font-settings .font-family-list li').removeClass('active');
-        $('.font-settings .font-family-list li:nth-child('+(fontState.family+1)+')').addClass('active');
+        $('.font-settings .font-family-index li').removeClass('active');
+        $('.font-settings .font-family-index li:nth-child('+(fontState.family+1)+')').addClass('active');
 
         $book[0].className = $book[0].className.replace(/\bfont-\S+/g, '');
         $book.addClass('font-size-'+fontState.size);

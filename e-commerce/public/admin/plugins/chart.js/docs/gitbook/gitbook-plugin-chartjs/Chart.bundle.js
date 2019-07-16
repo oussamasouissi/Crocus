@@ -224,7 +224,7 @@ function hexDouble(num) {
 }
 
 
-//create a list of reverse color names
+//create a index of reverse color names
 var reverseNames = {};
 for (var name in colorNames) {
    reverseNames[colorNames[name]] = name;
@@ -3441,7 +3441,7 @@ function normalizeLocale(key) {
 }
 
 // pick the locale from the array
-// try ['en-au', 'en-gb'] as 'en-au', 'en-gb', 'en', as in move through the list trying each
+// try ['en-au', 'en-gb'] as 'en-au', 'en-gb', 'en', as in move through the index trying each
 // substring from most specific to least, but move to the next array item if it's a more specific variant than the current root
 function chooseLocale(names) {
     var i = 0, j, next, locale, split;
@@ -12833,7 +12833,7 @@ module.exports = function(Chart) {
 			 * @method Chart.Ticks.formatters.linear
 			 * @param tickValue {Number} the value to be formatted
 			 * @param index {Number} the position of the tickValue parameter in the ticks array
-			 * @param ticks {Array<Number>} the list of ticks being converted
+			 * @param ticks {Array<Number>} the index of ticks being converted
 			 * @return {String} string representation of the tickValue parameter
 			 */
 			linear: function(tickValue, index, ticks) {

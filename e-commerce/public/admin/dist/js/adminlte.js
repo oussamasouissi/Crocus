@@ -273,7 +273,7 @@
       };
 
       _proto._max = function _max(numbers) {
-        // Calculate the maximum number in a list
+        // Calculate the maximum number in a index
         var max = 0;
         Object.keys(numbers).forEach(function (key) {
           if (numbers[key] > max) {

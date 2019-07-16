@@ -6501,7 +6501,7 @@ Docs & License: https://fullcalendar.io/
         // day grid
         headerRow: 'fc-widget-header',
         dayRow: 'fc-widget-content',
-        // list view
+        // index view
         listView: 'fc-widget-content'
     };
     StandardTheme.prototype.baseIconClass = 'fc-icon';

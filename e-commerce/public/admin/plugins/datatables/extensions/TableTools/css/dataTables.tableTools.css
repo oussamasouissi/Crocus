@@ -17,7 +17,7 @@
  *   CONTAINER             TableTools container element and styles applying to all components
  *   BUTTON_STYLES         Action specific button styles
  *   SELECTING             Row selection styles
- *   COLLECTIONS           Drop down list (collection) styles
+ *   COLLECTIONS           Drop down index (collection) styles
  *   PRINTING              Print display styles
  */
 
@@ -254,7 +254,7 @@ table.dataTable tr.DTTT_selected.even td.sorting_3 {
 
 /*
  * COLLECTIONS
- * Drop down list (collection) styles
+ * Drop down index (collection) styles
  */
 
 div.DTTT_collection {

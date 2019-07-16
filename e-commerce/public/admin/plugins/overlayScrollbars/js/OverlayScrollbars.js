@@ -480,9 +480,9 @@
              * Redistribution and use in source and binary forms, with or without modification, 
              * are permitted provided that the following conditions are met:
              * 
-             * Redistributions of source code must retain the above copyright notice, this list of 
+             * Redistributions of source code must retain the above copyright notice, this index of
              * conditions and the following disclaimer.
-             * Redistributions in binary form must reproduce the above copyright notice, this list 
+             * Redistributions in binary form must reproduce the above copyright notice, this index
              * of conditions and the following disclaimer in the documentation and/or other materials 
              * provided with the distribution.
              * 
@@ -1942,7 +1942,7 @@
                 _base.remove = function(instance) {
                     var index = FRAMEWORK.inArray(instance, _loopingInstances);
                     if(index > -1) {
-                        //remove from loopingInstances list
+                        //remove from loopingInstances index
                         _loopingInstancesIntervalCache.splice(index, 1);
                         _loopingInstances.splice(index, 1);
 
@@ -2758,7 +2758,7 @@
                     var oldClassNames = _oldClassName !== undefined && _oldClassName !== null ? _oldClassName.split(_strSpace) : [_strEmpty];
                     var currClassNames = _classNameCache !== undefined && _classNameCache !== null ? _classNameCache.split(_strSpace) : [_strEmpty];
 
-                    //remove none theme from diff list to prevent update
+                    //remove none theme from diff index to prevent update
                     var idx = FRAMEWORK.inArray(_classNameThemeNone, diff);
                     var curr;
                     var i;
@@ -5498,7 +5498,7 @@
                         FRAMEWORK(_imgs[i]).off('load', imgOnLoad);
                     _imgs = undefined;
 
-                    //remove this instance from the instances list
+                    //remove this instance from the instances index
                     INSTANCES(pluginTargetElement, 0);
                     dispatchCallback("onDestroyed");
 

@@ -430,7 +430,7 @@ ZeroClipboard_TableTools.Client.prototype = {
 };
 
 // For the Flash binding to work, ZeroClipboard_TableTools must be on the global
-// object list
+// object index
 window.ZeroClipboard_TableTools = ZeroClipboard_TableTools;
 //include TableTools.js
 /* TableTools
@@ -1408,7 +1408,7 @@ TableTools.prototype = {
 	 */
 
 	/**
-	 * Create a collection button, when activated will present a drop down list of other buttons
+	 * Create a collection button, when activated will present a drop down index of other buttons
 	 *  @param   {Node} nButton Button to use for the collection activation
 	 *  @param   {Object} oConfig Button configuration object
 	 *  @returns void

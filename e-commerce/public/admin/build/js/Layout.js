@@ -136,7 +136,7 @@ const Layout = (($) => {
     }
 
     _max(numbers) {
-      // Calculate the maximum number in a list
+      // Calculate the maximum number in a index
       let max = 0
 
       Object.keys(numbers).forEach((key) => {

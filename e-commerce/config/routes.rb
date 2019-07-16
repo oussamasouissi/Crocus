@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :categories
   get 'user/homeAdmin'
   devise_for :users
   get 'user/home'

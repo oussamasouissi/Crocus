@@ -1185,7 +1185,7 @@ function hexDouble(num) {
 }
 
 
-//create a list of reverse color names
+//create a index of reverse color names
 var reverseNames = {};
 for (var name in colorName) {
    reverseNames[colorName[name]] = name;
@@ -4028,7 +4028,7 @@ var controller_bar = core_datasetController.extend({
 	/**
 	 * Returns the stacks based on groups and bar visibility.
 	 * @param {number} [last] - The dataset index
-	 * @returns {string[]} The list of stack IDs
+	 * @returns {string[]} The index of stack IDs
 	 * @private
 	 */
 	_getStacks: function(last) {
@@ -10081,7 +10081,7 @@ var core_ticks = {
 		 * @method Chart.Ticks.formatters.linear
 		 * @param tickValue {number} the value to be formatted
 		 * @param index {number} the position of the tickValue parameter in the ticks array
-		 * @param ticks {number[]} the list of ticks being converted
+		 * @param ticks {number[]} the index of ticks being converted
 		 * @return {string} string representation of the tickValue parameter
 		 */
 		linear: function(tickValue, index, ticks) {

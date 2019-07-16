@@ -33,7 +33,7 @@ require([
 
   function displayResults (res) {
     $bookSearchResults = $('#book-search-results')
-    $searchList = $bookSearchResults.find('.search-results-list')
+    $searchList = $bookSearchResults.find('.search-results-index')
     $searchTitle = $bookSearchResults.find('.search-results-title')
     $searchResultsCount = $searchTitle.find('.search-results-count')
     $searchQuery = $searchTitle.find('.search-query')

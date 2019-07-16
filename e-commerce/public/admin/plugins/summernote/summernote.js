@@ -91,7 +91,7 @@
       '<output class="note-status-output" aria-live="polite"/>',
   ].join(''));
   var buttonGroup = renderer.create('<div class="note-btn-group btn-group">');
-  var dropdown = renderer.create('<ul class="dropdown-menu" role="list">', function ($node, options) {
+  var dropdown = renderer.create('<ul class="dropdown-menu" role="index">', function ($node, options) {
       var markup = Array.isArray(options.items) ? options.items.map(function (item) {
           var value = (typeof item === 'string') ? item : (item.value || '');
           var content = options.template ? options.template(item) : item;
@@ -105,7 +105,7 @@
   var dropdownButtonContents = function (contents, options) {
       return contents + ' ' + icon(options.icons.caret, 'span');
   };
-  var dropdownCheck = renderer.create('<ul class="dropdown-menu note-check" role="list">', function ($node, options) {
+  var dropdownCheck = renderer.create('<ul class="dropdown-menu note-check" role="index">', function ($node, options) {
       var markup = Array.isArray(options.items) ? options.items.map(function (item) {
           var value = (typeof item === 'string') ? item : (item.value || '');
           var content = options.template ? options.template(item) : item;
@@ -359,8 +359,8 @@
               h6: 'Header 6'
           },
           lists: {
-              unordered: 'Unordered list',
-              ordered: 'Ordered list'
+              unordered: 'Unordered index',
+              ordered: 'Ordered index'
           },
           options: {
               help: 'Help',
@@ -411,8 +411,8 @@
               'justifyCenter': 'Set center align',
               'justifyRight': 'Set right align',
               'justifyFull': 'Set full align',
-              'insertUnorderedList': 'Toggle unordered list',
-              'insertOrderedList': 'Toggle ordered list',
+              'insertUnorderedList': 'Toggle unordered index',
+              'insertOrderedList': 'Toggle ordered index',
               'outdent': 'Outdent on current paragraph',
               'indent': 'Indent on current paragraph',
               'formatPara': 'Change current block\'s format as a paragraph(P tag)',
@@ -716,7 +716,7 @@
       return true;
   }
   /**
-   * returns true if the value is present in the list.
+   * returns true if the value is present in the index.
    */
   function contains(array, item) {
       if (array && array.length && item) {
@@ -725,7 +725,7 @@
       return false;
   }
   /**
-   * get sum from a list
+   * get sum from a index
    *
    * @param {Array} array - array
    * @param {Function} fn - iterator
@@ -750,7 +750,7 @@
       return result;
   }
   /**
-   * returns whether list is empty or not
+   * returns whether index is empty or not
    */
   function isEmpty(array) {
       return !array || !array.length;
@@ -832,10 +832,10 @@
   /**
    * @class core.list
    *
-   * list utils
+   * index utils
    *
    * @singleton
-   * @alternateClassName list
+   * @alternateClassName index
    */
   var lists = {
       head: head,
@@ -2193,7 +2193,7 @@
           this.eo = eo;
           // isOnEditable: judge whether range is on editable or not
           this.isOnEditable = this.makeIsOn(dom.isEditable);
-          // isOnList: judge whether range is on list node or not
+          // isOnList: judge whether range is on index node or not
           this.isOnList = this.makeIsOn(dom.isList);
           // isOnAnchor: judge whether range is on anchor node or not
           this.isOnAnchor = this.makeIsOn(dom.isAnchor);
@@ -3046,7 +3046,7 @@
        * @return {Object}
        */
       Style.prototype.fromNode = function ($node) {
-          var properties = ['font-family', 'font-size', 'text-align', 'list-style-type', 'line-height'];
+          var properties = ['font-family', 'font-size', 'text-align', 'index-style-type', 'line-height'];
           var styleInfo = this.jQueryCSS($node, properties) || {};
           styleInfo['font-size'] = parseInt(styleInfo['font-size'], 10);
           return styleInfo;
@@ -3134,13 +3134,13 @@
               });
           }
           catch (e) { }
-          // list-style-type to list-style(unordered, ordered)
+          // index-style-type to index-style(unordered, ordered)
           if (!rng.isOnList()) {
               styleInfo['list-style'] = 'none';
           }
           else {
               var orderedTypes = ['circle', 'disc', 'disc-leading-zero', 'square'];
-              var isUnordered = orderedTypes.indexOf(styleInfo['list-style-type']) > -1;
+              var isUnordered = orderedTypes.indexOf(styleInfo['index-style-type']) > -1;
               styleInfo['list-style'] = isUnordered ? 'unordered' : 'ordered';
           }
           var para = dom.ancestor(rng.sc, dom.isPara);
@@ -3163,13 +3163,13 @@
       function Bullet() {
       }
       /**
-       * toggle ordered list
+       * toggle ordered index
        */
       Bullet.prototype.insertOrderedList = function (editable) {
           this.toggleList('OL', editable);
       };
       /**
-       * toggle unordered list
+       * toggle unordered index
        */
       Bullet.prototype.insertUnorderedList = function (editable) {
           this.toggleList('UL', editable);
@@ -3232,7 +3232,7 @@
           rng.select();
       };
       /**
-       * toggle list
+       * toggle index
        *
        * @param {String} listName - OL or UL
        */
@@ -3242,14 +3242,14 @@
           var paras = rng.nodes(dom.isPara, { includeAncestor: true });
           var bookmark = rng.paraBookmark(paras);
           var clustereds = lists.clusterBy(paras, func.peq2('parentNode'));
-          // paragraph to list
+          // paragraph to index
           if (lists.find(paras, dom.isPurePara)) {
               var wrappedParas_1 = [];
               $$1.each(clustereds, function (idx, paras) {
                   wrappedParas_1 = wrappedParas_1.concat(_this.wrapList(paras, listName));
               });
               paras = wrappedParas_1;
-              // list to paragraph or change list style
+              // index to paragraph or change index style
           }
           else {
               var diffLists = rng.nodes(dom.isList, {
@@ -3283,7 +3283,7 @@
           paras = paras.map(function (para) {
               return dom.isPurePara(para) ? dom.replace(para, 'LI') : para;
           });
-          // append to list(<ul>, <ol>)
+          // append to index(<ul>, <ol>)
           dom.appendChildNodes(listNode, paras);
           if (nextList) {
               dom.appendChildNodes(listNode, lists.from(nextList.childNodes));
@@ -3369,8 +3369,8 @@
       /**
        * @method appendToPrevious
        *
-       * Appends list to previous list item, if
-       * none exist it wraps the list in a new list item.
+       * Appends index to previous index item, if
+       * none exist it wraps the index in a new index item.
        *
        * @param {HTMLNode} ListItem
        * @return {HTMLNode}
@@ -3383,7 +3383,7 @@
       /**
        * @method findList
        *
-       * Finds an existing list in list item
+       * Finds an existing index in index item
        *
        * @param {HTMLNode} ListItem
        * @return {Array[]}
@@ -3396,7 +3396,7 @@
       /**
        * @method findNextSiblings
        *
-       * Finds all list item siblings that follow it
+       * Finds all index item siblings that follow it
        *
        * @param {HTMLNode} ListItem
        * @return {HTMLNode}
@@ -3445,7 +3445,7 @@
        *
        * blockquoteBreakingLevel
        *   0 - No break, the new paragraph remains inside the quote
-       *   1 - Break the first blockquote in the ancestors list
+       *   1 - Break the first blockquote in the ancestors index
        *   2 - Break all blockquotes, so that the new paragraph is not quoted (this is the default)
        */
       Typing.prototype.insertParagraph = function (editable, rng) {
@@ -5980,7 +5980,7 @@
                           children: [justifyLeft, justifyCenter, justifyRight, justifyFull]
                       }),
                       _this.ui.buttonGroup({
-                          className: 'note-list',
+                          className: 'note-index',
                           children: [outdent, indent]
                       }),
                   ]),
@@ -7176,7 +7176,7 @@
           var keyMap = this.options.keyMap[env.isMac ? 'mac' : 'pc'];
           return Object.keys(keyMap).map(function (key) {
               var command = keyMap[key];
-              var $row = $$1('<div><div class="help-list-item"/></div>');
+              var $row = $$1('<div><div class="help-index-item"/></div>');
               $row.append($$1('<label><kbd>' + key + '</kdb></label>').css({
                   'width': 180,
                   'margin-right': 10

@@ -32,12 +32,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Catégorie</h1>
+            <h1 class="m-0 text-dark">Produit</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/admin/#">Home</a></li>
-              <li class="breadcrumb-item active">Ajout d'une catégorie</li>
+              <li class="breadcrumb-item active">Ajout d'un produit</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -53,23 +53,99 @@
           <div class="col-md-6">
             <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title">Ajout d'une nouvelle catégorie</h3>
+                <h3 class="card-title">Ajout d'un nouveau produit</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <%= form_with model: @categorie, :html => {:class => 'form-horizontal' } ,local: true do |f| %>
+              <%= form_with model: @produit, :html => {:class => 'form-horizontal' } ,local: true do |f| %>
+                <% if @produit.errors.any? %>
+                  <div class="alert alert-primary" role="alert">
+                    <%= pluralize(@produit.errors.count, "error") %> prohibited
+                    this article from being saved:
+                  </div>
+                  <div id="error_explanation">
 
+                    <ul>
+                      <% @produit.errors.full_messages.each do |msg| %>
+                        <div class="alert alert-danger" role="alert">
+                          <%= msg %>
+                        </div>
+
+                      <% end %>
+                    </ul>
+                  </div>
+                <% end %>
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-4 control-label">Nom catégorie</label>
+                    <label for="inputEmail3" class="col-sm-4 control-label">Nom produit</label>
 
                     <div class="col-sm-10">
 
-                      <%= f.text_field :nomCategorie , :class => 'form-control' %>
+                      <%= f.text_field :nomProduit , :class => 'form-control' %>
                     </div>
                   </div>
 
 
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-4 control-label">Prix de produit</label>
+
+                    <div class="col-sm-10">
+
+                      <%= f.text_field :prix , :class => 'form-control' %>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-4 control-label">quantité de stock</label>
+
+                    <div class="col-sm-10">
+
+                      <%= f.text_field :qteStock , :class => 'form-control' %>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-4 control-label">Marque de produit</label>
+
+                    <div class="col-sm-10">
+
+                      <%= f.text_field :marque , :class => 'form-control' %>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-4 control-label" placeholder="met un 0 si il'ya pas de remise sur le produit">Remise en %</label>
+
+                    <div class="col-sm-10">
+
+                      <%= f.text_field :remise , :class => 'form-control' %>
+                    </div>
+                  </div>
+
+
+                <div class="form-group">
+                  <label>Catégorie de produit</label>
+
+                      <% options = options_from_collection_for_select(Categorie.all, 'id', 'nomCategorie') %>
+                      <%= f.select :categorie_id,  options  %>
+
+
+
+                  </div>
+
+                <div class="form-group">
+                  <label for="exampleInputFile"><p>  Image de produit</p> </label>
+                  <div class="input-group">
+
+                    <div class="input-group-append">
+                      <%= f.file_field :image , :class => 'custom-file' %>
+
+                    </div>
+                  </div>
+                </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
@@ -78,7 +154,7 @@
                 </div>
                 <!-- /.card-footer -->
 
-                <%end %>
+              <%end %>
             </div>
           </div>
         </div>
@@ -86,7 +162,7 @@
     </section>
   </div>
 
-    <!-- /.content -->
+  <!-- /.content -->
 
   <!-- /.content-wrapper -->
 

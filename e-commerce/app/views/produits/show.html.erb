@@ -14,7 +14,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="/admin/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link href="/admin/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
@@ -32,12 +32,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Catégorie</h1>
+            <h1 class="m-0 text-dark">Gestion des catégories</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/admin/#">Home</a></li>
-              <li class="breadcrumb-item active">Ajout d'une catégorie</li>
+              <li class="breadcrumb-item active">Gestion des catégorie</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -46,47 +46,74 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
+    <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <!-- left column -->
-          <div class="col-md-6">
-            <div class="card card-info">
+          <div class="col-12">
+            <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Ajout d'une nouvelle catégorie</h3>
-              </div>
-              <!-- /.card-header -->
-              <!-- form start -->
-              <%= form_with model: @categorie, :html => {:class => 'form-horizontal' } ,local: true do |f| %>
+                <h3 class="card-title">Liste des catégories</h3>
 
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-4 control-label">Nom catégorie</label>
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
-                    <div class="col-sm-10">
-
-                      <%= f.text_field :nomCategorie , :class => 'form-control' %>
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
                     </div>
                   </div>
-
-
                 </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                  <%= f.submit 'Valider', :class => 'btn btn-info' %>
-                  <button type="submit" class="btn btn-default float-right">Annuler</button>
-                </div>
-                <!-- /.card-footer -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover">
+                  <tr>
+                    <th>ID</th>
+                    <th>Nom Produit</th>
+                    <th>prix</th>
+                    <th>qteStock</th>
+                    <th>image</th>
+                    <th>marque</th>
+                    <th>remise</th>
+                    <th>produit_id</th>
+                  </tr>
 
-                <%end %>
+
+                  <% @produits.each do |produit| %>
+
+                    <tr>
+                      <td><%= produit.id %></td>
+                      <td><%= produit.nomProduit %></td>
+                      <td><%= produit.prix %></td>
+                      <td><%= produit.qteStock %></td>
+                      <div style="width: 10px; height: auto"><td><%= image_tag(produit.image , :size => '150x120') if produit.image.attached? %></td></div>
+                      <td><%= produit.marque %></td>
+                      <td><p class="badge bg-warning"><%= produit.remise %>%</p></td>
+                      <td><%= produit.categorie.nomCategorie %></td>
+                      <td><%= link_to 'Edit', edit_produit_path(produit),:class => 'badge bg-danger' %></td>
+                      <td><%= link_to 'Delete', produit_path(produit),
+                                      method: :delete,
+                                      data: { confirm: 'Are you sure?' },
+                                      :class => 'badge bg-danger' %></td>
+
+                    </tr>
+                  <%end %>
+
+                </table>
+              </div>
+              <%= link_to 'Ajouter un produits', new_produit_path,:class => 'btn btn-block btn-outline-primary btn-lg' %>
+              <!-- /.card-body -->
             </div>
+            <!-- /.card -->
           </div>
-        </div>
-      </div>
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+
     </section>
   </div>
 
-    <!-- /.content -->
+  <!-- /.content -->
 
   <!-- /.content-wrapper -->
 

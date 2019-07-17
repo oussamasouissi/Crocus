@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
 
     def index
       @categorie = Categorie.find(params[:id])
-      #
+
     end
     def edit
       @categorie = Categorie.find(params[:id])
@@ -40,7 +40,7 @@ class CategoriesController < ApplicationController
     end
     private
     def categorie_params
-      params.require(:categorie).permit(:nomCategorie, :text)
+      params.require(:categorie).permit(:nomCategorie)
     end
 
   end

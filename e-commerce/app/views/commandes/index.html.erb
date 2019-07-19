@@ -1,0 +1,66 @@
+
+<%= render 'layouts/navigation' %>
+<!--================Cart Area =================-->
+<% @commandes.each do |commande| %>
+ <section class="cart_area">
+  <div class="container">
+    <div class="cart_inner">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Produits commandes</th>
+              <th scope="col">Commander par</th>
+              <th scope="col">Quantité</th>
+              <th scope="col">etat produit</th>
+            </tr>
+          </thead>
+          <tbody>
+              <td>
+               <div class="media">
+                  <div class="d-flex">
+                    <img
+                      src="img/product/single-product/images.jpeg"
+                      alt=""/>
+                  </div>
+                  <div class="media-body">
+                  <% @commandes.each do |commande| %>
+                    <% commande.produits.each do |produit| %>
+                       <%= produit.nomProduit %>
+                    <% end %> 
+                  <% end %>  
+
+                  </div>
+                </div>
+              </td>
+
+              </td>
+              <td>
+              <%= commande.user.email %>,
+              <%= time_ago_in_words(commande.created_at) %> ago,
+
+
+             <td>
+              <%= commande.quantité %>
+              </td>
+
+              <td>
+              <%= commande.etat %>
+
+              </td>
+              <td>
+              <%= link_to "Edit ", edit_commande_path(commande) %> |
+              <%= link_to "Delete ", commande_path(commande), method: :delete, 
+                                   data: {confirm: "Are you sure you want to delete the commande ?"}
+                                    %> |
+              </td>
+               </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+<% end %>
+<%= render 'layouts/footer' %>  
+
+

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   resources :produits do
     collection do
       get '/filtreProdMarque/:marque' , to: 'produits#filtreProdMarque' , as: 'filterMarque'
@@ -14,6 +15,8 @@ Rails.application.routes.draw do
       get '/showFiltreCat/:id' , to: 'categories#showFiltreCat' , as: 'filter'
     end
   end
+    resources :commandes
+
   get 'user/homeAdmin'
   devise_for :users
   get 'user/home'

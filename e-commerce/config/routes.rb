@@ -1,7 +1,22 @@
 Rails.application.routes.draw do
-  resources :commandes
-  resources :produits
-  resources :categories
+
+  resources :produits do
+    collection do
+      get '/filtreProdMarque/:marque' , to: 'produits#filtreProdMarque' , as: 'filterMarque'
+      get '/filtreTriCroissantPrix' , to: 'produits#filtreTriCroissantPrix' , as: 'filterPrix'
+      get '/filtreTriDecroissantPrix' , to: 'produits#filtreTriDecroissantPrix' , as: 'filterPrixDec'
+    end
+
+  end
+
+  resources :categories do
+
+    collection do
+      get '/showFiltreCat/:id' , to: 'categories#showFiltreCat' , as: 'filter'
+    end
+  end
+    resources :commandes
+
   get 'user/homeAdmin'
   devise_for :users
   get 'user/home'

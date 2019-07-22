@@ -1,16 +1,13 @@
 class CategoriesController < ApplicationController
 
     def index
-      @categorie = Categorie.find(params[:id])
+      @categories = Categorie.all
 
     end
     def edit
       @categorie = Categorie.find(params[:id])
     end
-    def show
-      #
-       @categories = Categorie.all
-    end
+
     def new
       @categorie = Categorie.new
     end
@@ -18,7 +15,7 @@ class CategoriesController < ApplicationController
       @categorie = Categorie.new(categorie_params)
 
       if @categorie.save
-        redirect_to controller: 'categories' ,action: "show" , id: @categorie
+        redirect_to controller: 'categories'
       else
         render 'new'
       end
@@ -27,18 +24,25 @@ class CategoriesController < ApplicationController
       @categorie = Categorie.find(params[:id])
       @categorie.destroy
 
-      redirect_to category_path
+      redirect_to controller: 'categories'
     end
     def update
       @categorie = Categorie.find(params[:id])
 
       if @categorie.update(categorie_params)
-        redirect_to category_path
+        redirect_to controller: 'categories'
       else
         render 'edit'
       end
     end
-    private
+    def showFiltreCat
+      @categories = Categorie.all
+      @marques = Produit.all.distinct.pluck(:marque)
+      @categorie = Categorie.find(params[:id])
+
+
+    end
+    protected
     def categorie_params
       params.require(:categorie).permit(:nomCategorie)
     end

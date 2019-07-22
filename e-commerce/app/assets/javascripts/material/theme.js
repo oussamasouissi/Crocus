@@ -31,7 +31,7 @@
     }
     parallaxEffect();
 
-    var dropToggle = $('.widgets_inner .index li').has('ul').children('a');
+    var dropToggle = $('.widgets_inner .list li').has('ul').children('a');
     dropToggle.on('click', function () {
         dropToggle.not(this).closest('li').find('ul').slideUp(200);
         $(this).closest('li').children('ul').slideToggle(200);

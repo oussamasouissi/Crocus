@@ -52,6 +52,56 @@ class ProduitsController < ApplicationController
     @marques = Produit.all.distinct.pluck(:marque)
     @produits = Produit.filtreDcrPrix()
   end
+  def statistiquesProduits
+
+    @produits = Produit.limit(5).order(nbrDeVente: :desc)
+    @prodlistVente = @produits.map do |p|
+      {
+          :label => p.nomProduit,
+          :value => p.nbrDeVente.to_s
+      }
+    end
+
+
+
+
+
+
+    chartData = {
+        "chart": {
+            "caption": "Les produits les plus vendus",
+
+            "showValues": "1",
+            "showPercentInTooltip": "0",
+            "numberPrefix": "Nombre de ventes= ",
+            "enableMultiSlicing": "1",
+            "theme": "fusion"
+        },
+        "data": @prodlistVente
+
+
+
+    }
+
+
+
+    # Chart rendering
+    @chart = Fusioncharts::Chart.new({
+                                        width: "600",
+                                        height: "400",
+                                        type: "pie3d",
+                                        renderAt: "chart",
+                                        dataSource: chartData
+                                    })
+
+
+
+    # Chart appearance configuration
+
+  end
+
+
+
 
   private
   def product_params

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
       get '/filtreProdMarque/:marque' , to: 'produits#filtreProdMarque' , as: 'filterMarque'
       get '/filtreTriCroissantPrix' , to: 'produits#filtreTriCroissantPrix' , as: 'filterPrix'
       get '/filtreTriDecroissantPrix' , to: 'produits#filtreTriDecroissantPrix' , as: 'filterPrixDec'
+      get '/statistiquesProduits' , to: 'produits#statistiquesProduits' , as:'statsProd'
+
     end
 
   end

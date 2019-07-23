@@ -41,4 +41,11 @@ end
 
   get "/:page" => "static#show"
 
+  Rails.application.routes.draw do
+    get 'contact-us', to: 'messages#new', as: 'new_message'
+    post 'contact-us', to: 'messages#create', as: 'create_message'
+  end
+
+
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

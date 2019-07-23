@@ -17,3 +17,4 @@
 //= require jquery_ujs
 //= require popper
 //= require_tree ./material
+//= require_tree ./fusioncharts

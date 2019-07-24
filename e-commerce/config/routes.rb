@@ -20,7 +20,8 @@ Rails.application.routes.draw do
   resources :commandes
 
   get 'user/homeAdmin'
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
   get 'user/home'
   root 'home#index'
 

@@ -9,7 +9,7 @@ gem 'font-awesome-sass'
 source 'https://rails-assets.org/' do
   gem 'rails-assets-adminlte'
 end
-
+gem 'omniauth-facebook'
 gem 'fusioncharts-rails'
 ruby '2.6.3'
 gem 'bootstrap-sass'

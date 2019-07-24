@@ -4,9 +4,12 @@ class CommandesController < ApplicationController
     def index
       @user = current_user
       @commandes = Commande.where(user_id:@user.id)
+      @commndesAdmin=Commande.all
     end
   
     def show
+      @commande = Commande.find(params[:id])
+      render 'show'
     end
   
     def new
@@ -43,7 +46,7 @@ class CommandesController < ApplicationController
           flash[:success] = "command was successfully updated"
           redirect_to @commande
       else
-          render 'edit'
+          render 'index'
       end
   end
   
@@ -55,7 +58,7 @@ class CommandesController < ApplicationController
   
     private
       def commande_params
-        params.require(:commande).permit(:etat, :quantité)
+        params.require(:commande).permit(:etat, :quantite)
       end
   
   end

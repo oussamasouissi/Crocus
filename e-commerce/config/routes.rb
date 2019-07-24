@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       get '/showFiltreCat/:id' , to: 'categories#showFiltreCat' , as: 'filter'
     end
   end
-    resources :commandes
+  resources :commandes
 
   get 'user/homeAdmin'
   devise_for :users

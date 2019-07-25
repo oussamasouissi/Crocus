@@ -30,4 +30,8 @@ class User < ApplicationRecord
       user.UserName = auth.info.name
     end
   end
+
+  def has_required_fields?
+    self.description && self.nomSociete && self.numFournisseur
+        end
 end

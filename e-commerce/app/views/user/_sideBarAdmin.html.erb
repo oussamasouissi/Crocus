@@ -25,11 +25,11 @@
              with font-awesome or any other icon font library -->
         <li class="nav-item">
           <a href="/admin/pages/widgets.html" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
-            <p>
-              Vue d'ensemble
 
-            </p>
+
+
+              <%= link_to 'Vue d ensemble' , homeAdmin_user_index_path ,:class => "nav-icon fas fa-th"  %>
+
           </a>
         </li>
 
@@ -77,6 +77,8 @@
                 <p>FeedBack</p>
               </a>
             </li>
+
+
             <li class="nav-item">
               <%= link_to 'Produits' , statsProd_produits_path ,:class => "nav-link"  %>
             </li>
@@ -161,10 +163,7 @@
 
             </li>
             <li class="nav-item">
-              <a href="/admin/pages/tables/data.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>User</p>
-              </a>
+              <%= link_to 'Users' , listUsers_user_index_path ,:class => "nav-link"  %>
             </li>
           </ul>
         </li>

@@ -1,14 +1,17 @@
 class CategoriesController < ApplicationController
-
+  
     def index
+      authorize! :read, Categorie
       @categories = Categorie.all
 
     end
     def edit
+      authorize! :update, Categorie
       @categorie = Categorie.find(params[:id])
     end
 
     def new
+      authorize! :new, Categorie
       @categorie = Categorie.new
     end
     def create
@@ -46,5 +49,4 @@ class CategoriesController < ApplicationController
     def categorie_params
       params.require(:categorie).permit(:nomCategorie)
     end
-
   end

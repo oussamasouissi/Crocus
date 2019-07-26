@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2019_07_24_105816) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "nbrDeVente", default: 0
+    t.string "details"
     t.index ["categorie_id"], name: "index_produits_on_categorie_id"
   end
 
@@ -79,9 +80,6 @@ ActiveRecord::Schema.define(version: 2019_07_24_105816) do
     t.string "sexe"
     t.string "roles"
     t.string "UserName"
-    t.string "provider"
-    t.string "uid"
-    t.text "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

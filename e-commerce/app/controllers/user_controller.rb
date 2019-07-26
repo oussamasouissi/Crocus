@@ -1,5 +1,7 @@
 class UserController < ApplicationController
   def home
+    @produits = Produit.all
+
   end
 
   def homeAdmin

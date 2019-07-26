@@ -4,4 +4,5 @@ class UserController < ApplicationController
   def homeAdmin
     @user = User.find(current_user.id)
   end
+
 end

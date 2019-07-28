@@ -9,7 +9,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-<<<<<<< HEAD
+
   :recoverable, :rememberable, :validatable ,:omniauthable, :omniauth_providers => [:facebook]
 
   def self.new_with_session(params, session)
@@ -30,5 +30,11 @@ class User < ApplicationRecord
       user.Name = auth.info.name   # assuming the user model has a name
       user.UserName = auth.info.name
     end
-  end  
+
+  end
+
+  def has_required_fields?
+    self.description && self.nomSociete && self.numFournisseur
+        end
+
 end

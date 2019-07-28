@@ -1,0 +1,317 @@
+<% if user_signed_in? %>
+  <%if current_user.roles == "admin" %>
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+      <title>AdminLTE 3 | Dashboard 2</title>
+
+      <!-- Font Awesome Icons -->
+      <link rel="stylesheet" href="/admin/plugins/fontawesome-free/css/all.min.css">
+      <!-- overlayScrollbars -->
+      <link rel="stylesheet" href="/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+      <!-- Theme style -->
+      <link rel="stylesheet" href="/admin/dist/css/adminlte.min.css">
+      <!-- Google Font: Source Sans Pro -->
+      <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    </head>
+    <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+      <!-- Navbar -->
+      <%= render 'user/headerAdmin' %>
+      <!-- /.navbar -->
+
+      <!-- Main Sidebar Container -->
+      <%= render 'user/sideBarAdmin' %>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Gestion des utilisateurs</h1>
+              </div><!-- /.col -->
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item"><a href="/admin/#">Home</a></li>
+                  <li class="breadcrumb-item active">Gestion des utilisateurs</li>
+                </ol>
+              </div><!-- /.col -->
+            </div><!-- /.row -->
+          </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <!-- Main content -->
+        <section class="content">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Liste des clients</h3>
+
+                    <div class="card-tools">
+                      <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                          <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body table-responsive p-0">
+                    <table class="table table-hover">
+                      <tr>
+                        <th>ID</th>
+                        <th>email</th>
+                        <th>Date of creation</th>
+                        <th>name</th>
+                        <th>CIN</th>
+                        <th>téléphone</th>
+                        <th>adresse</th>
+                        <th>code postale</th>
+                        <th>sexe</th>
+                        <th>roles</th>
+                        <th>Username</th>
+
+                      </tr>
+
+
+                      <% @clients.each do |client| %>
+
+                        <tr>
+                          <td><%= client.id %></td>
+                          <td><%= client.email %></td>
+                          <td><%= client.created_at %></td>
+                          <td><%= client.Name %></td>
+                          <td><%= client.CIN %></td>
+                          <td><%= client.téléphone %></td>
+                          <td><%= client.adresse %></td>
+                          <td><%= client.code_postal %></td>
+                          <td><%= client.sexe %></td>
+                          <td><p class="badge bg-warning"><%= client.roles %></td>
+                          <td><%= client.UserName %></td>
+
+
+
+
+                          <td><%= link_to 'Edit', edit_user_path(client.id),:class => 'badge bg-danger' %></td>
+                          <td><%= link_to 'Delete', user_path(client),
+                                          method: :delete,
+                                          data: { confirm: 'Are you sure?' },
+                                          :class => 'badge bg-danger' %></td>
+
+                        </tr>
+                      <%end %>
+
+                    </table>
+                  </div>
+
+                  <!-- /.card-body -->
+                </div>
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Liste des fournisseurs</h3>
+
+                    <div class="card-tools">
+                      <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                          <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body table-responsive p-0">
+                    <table class="table table-hover">
+                      <tr>
+                        <th>ID</th>
+                        <th>email</th>
+                        <th>Date of creation</th>
+                        <th>name</th>
+                        <th>CIN</th>
+                        <th>téléphone</th>
+                        <th>adresse</th>
+                        <th>code postale</th>
+                        <th>sexe</th>
+                        <th>roles</th>
+                        <th>Username</th>
+                        <th>Matricule Fiuscale</th>
+                        <th>nom Société</th>
+                        <th>Description</th>
+                        <th>Numéro de fournisseur</th>
+
+                      </tr>
+
+
+                      <% @fournisseurs.each do |fournisseur| %>
+
+                        <tr>
+                          <td><%= fournisseur.id %></td>
+                          <td><%= fournisseur.email %></td>
+                          <td><%= fournisseur.created_at %></td>
+                          <td><%= fournisseur.Name %></td>
+                          <td><%= fournisseur.CIN %></td>
+                          <td><%= fournisseur.téléphone %></td>
+                          <td><%= fournisseur.adresse %></td>
+                          <td><%= fournisseur.code_postal %></td>
+                          <td><%= fournisseur.sexe %></td>
+                          <td><p class="badge bg-warning"><%= fournisseur.roles %></td>
+                          <td><%= fournisseur.UserName %></td>
+                          <td><%= fournisseur.matriculeFiscale %></td>
+                          <td><%= fournisseur.description %></td>
+                          <td><%= fournisseur.nomSociete %></td>
+                          <td><%= fournisseur.numFournisseur %></td>
+
+
+
+
+                          <td><%= link_to 'Edit', edit_user_path(fournisseur.id),:class => 'badge bg-danger' %></td>
+                          <td><%= link_to 'Delete', user_path(fournisseur),
+                                          method: :delete,
+                                          data: { confirm: 'Are you sure?' },
+                                          :class => 'badge bg-danger' %></td>
+
+                        </tr>
+                      <%end %>
+
+                    </table>
+                  </div>
+
+                  <!-- /.card-body -->
+                </div>
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Liste des demandes de devenir fournisseurs</h3>
+
+                    <div class="card-tools">
+                      <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                          <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body table-responsive p-0">
+                    <table class="table table-hover">
+                      <tr>
+                        <th>ID</th>
+                        <th>email</th>
+                        <th>Date of creation</th>
+                        <th>name</th>
+                        <th>CIN</th>
+                        <th>téléphone</th>
+                        <th>adresse</th>
+                        <th>code postale</th>
+                        <th>sexe</th>
+                        <th>roles</th>
+                        <th>Username</th>
+                        <th>Matricule Fiuscale</th>
+                        <th>nom Société</th>
+                        <th>Description</th>
+                        <th>Numéro de fournisseur</th>
+
+                      </tr>
+
+
+                      <% @demandes.each do |demande| %>
+
+                        <tr>
+                          <td><%= demande.id %></td>
+                          <td><%= demande.email %></td>
+                          <td><%= demande.created_at %></td>
+                          <td><%= demande.Name %></td>
+                          <td><%= demande.CIN %></td>
+                          <td><%= demande.téléphone %></td>
+                          <td><%= demande.adresse %></td>
+                          <td><%= demande.code_postal %></td>
+                          <td><%= demande.sexe %></td>
+                          <td><p class="badge bg-warning"><%= demande.roles %></td>
+                          <td><%= demande.UserName %></td>
+                          <td><%= demande.matriculeFiscale %></td>
+                          <td><%= demande.description %></td>
+                          <td><%= demande.nomSociete %></td>
+                          <td><%= demande.numFournisseur %></td>
+
+
+
+
+                          <td><%= link_to 'Edit', edit_user_path(demande.id),:class => 'badge bg-danger' %></td>
+                          <td><%= link_to 'Delete', user_path(demande),
+                                          method: :delete,
+                                          data: { confirm: 'Are you sure?' },
+                                          :class => 'badge bg-danger' %></td>
+
+                        </tr>
+                      <%end %>
+
+                    </table>
+                  </div>
+
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
+            </div><!-- /.row -->
+          </div><!-- /.container-fluid -->
+
+        </section>
+      </div>
+
+      <!-- /.content -->
+
+      <!-- /.content-wrapper -->
+
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+      </aside>
+      <!-- /.control-sidebar -->
+
+      <!-- Main Footer -->
+
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="/admin/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/admin/dist/js/adminlte.js"></script>
+
+    <!-- OPTIONAL SCRIPTS -->
+    <script src="/admin/dist/js/demo.js"></script>
+
+    <!-- PAGE PLUGINS -->
+    <!-- jQuery Mapael -->
+    <script src="/admin/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+    <script src="/admin/plugins/raphael/raphael.min.js"></script>
+    <script src="/admin/plugins/jquery-mapael/jquery.mapael.min.js"></script>
+    <script src="/admin/plugins/jquery-mapael/maps/world_countries.min.js"></script>
+    <!-- ChartJS -->
+    <script src="/admin/plugins/chart.js/Chart.min.js"></script>
+
+    <!-- PAGE SCRIPTS -->
+    <script src="/admin/dist/js/pages/dashboard2.js"></script>
+    </body>
+    </html>
+<%end %>
+<%end %>

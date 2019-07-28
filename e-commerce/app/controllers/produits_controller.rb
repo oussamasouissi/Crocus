@@ -1,13 +1,16 @@
 class ProduitsController < ApplicationController
+
   def index
     @produits = Produit.all
     @categories = Categorie.all
     @marques = Produit.all.distinct.pluck(:marque)
   end
   def edit
+    authorize! :update, Produit
     @produit = Produit.find(params[:id])
   end
   def new
+    authorize! :new, Produit
     @produit = Produit.new
     @categories = Categorie.all
   end

@@ -1,29 +1,27 @@
 class CommandesController < ApplicationController
-  before_action :set_commande, only: [:edit, :update, :show, :destroy]
-  
+
     def index
       @user = current_user
       @commandes = Commande.where(user_id:@user.id)
       @commndesAdmin=Commande.all
     end
-  
+
     def show
+      authorize! :read, Commande
       @commande = Commande.find(params[:id])
       render 'show'
     end
-  
+    
     def new
+      authorize! :new, Commande
       @commande = Commande.new
-  
     end
-  
+
     def edit
       @commande = Commande.find(params[:id])
-  
     end
-  
+
     def create
-  
       @commande = Commande.new(commande_params)
       #@commande.user = User.first
       @commande.update(user_id:current_user.id)
@@ -33,12 +31,11 @@ class CommandesController < ApplicationController
           render 'new'
         end
     end
-  
+
     def destroy
       @commande.destroy
       flash[:danger] ="commande was successfully deleted"
       redirect_to @commande
-  
   end
   
     def update
@@ -49,17 +46,9 @@ class CommandesController < ApplicationController
           render 'index'
       end
   end
-  
-    private
-          def set_commande
-              @commande = Commande.find(params[:id])
-  
-          end
-  
+    
     private
       def commande_params
         params.require(:commande).permit(:etat, :quantite)
       end
-  
   end
-  

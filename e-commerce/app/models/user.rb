@@ -29,5 +29,11 @@ class User < ApplicationRecord
       user.Name = auth.info.name   # assuming the user model has a name
       user.UserName = auth.info.name
     end
-  end  
+
+  end
+
+  def has_required_fields?
+    self.description && self.nomSociete && self.numFournisseur
+        end
+
 end

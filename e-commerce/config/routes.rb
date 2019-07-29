@@ -19,11 +19,20 @@ Rails.application.routes.draw do
     end
   end
   resources :commandes
+  resources :user do
 
-  get 'user/homeAdmin'
+    collection do
+      get 'homeAdmin'
+      get 'home'
+      get 'listUsers' , to: 'user#listUsers' , as: 'listUsers'
+    end
+end
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-  get 'user/home'
+
+
+
   root 'home#index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

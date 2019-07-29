@@ -37,10 +37,6 @@ class UserController < ApplicationController
     params.require(:user).permit(:id,:email, :Name , :CIN , :téléphone , :adresse , :code_postal  , :roles, :UserName , :status , :description , :nomSociete , :numFournisseur)
   end
 
-
-  def user_params
-    params.require(:user).permit(:UserName, :email, :password, :password_confirmation, :Name , :CIN, :téléphone, :adresse, :code_postal, :sexe, :roles)
-  end
 end
 
 

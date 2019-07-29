@@ -61,6 +61,17 @@ class ProduitsController < ApplicationController
     @marques = Produit.all.distinct.pluck(:marque)
     @produits = Produit.filtreDcrPrix()
   end
+
+  def listProdFournisseur
+    @produits =Produit.where(user_id: current_user.id)
+  end
+  def homeFournisseur
+    @produitsPlusVendus = Produit.limit(6).where(user_id: current_user.id).order(nbrDeVente: :desc)
+    @produitsDernierAjout = Produit.limit(3).where(user_id: current_user.id).order(created_at: :desc)
+  end
+
+
+
   def statistiquesProduits
 
     @produits = Produit.limit(5).order(nbrDeVente: :desc)
@@ -110,6 +121,6 @@ class ProduitsController < ApplicationController
   end
  private
   def product_params
-    params.require(:produit).permit(:id,:nomProduit, :prix , :qteStock , :marque , :remise , :categorie_id  , :image)
+    params.require(:produit).permit(:id,:nomProduit, :prix , :qteStock , :marque , :remise , :categorie_id  , :image , :user_id)
   end
 end

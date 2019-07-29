@@ -142,13 +142,14 @@
                      aria-expanded="false">Espace fournisseur</a>
                   <ul class="dropdown-menu">
                     <li class="nav-item">
-                      <a class="nav-link" href="/elements.html">Vue d'ensemble</a>
+                      <%= link_to "vue d'ensemble", homeFour_produits_path,:class => 'nav-link' %>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="/tracking.html">Ajouter un produit</a>
+                      <%= link_to 'Ajouter un produit', new_produit_path,:class => 'nav-link' %>
+
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="/elements.html">Liste de mes produits</a>
+                      <%= link_to 'lister mes produit', listProdFour_produits_path,:class => 'nav-link' %>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="/elements.html">statistiques sur mes produits</a>

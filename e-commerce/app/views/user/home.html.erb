@@ -369,8 +369,6 @@
     </div>
 
     <div class="row">
-    
-
       <div class="col-lg-3 col-md-6">
         <div class="single-product">
           <div class="product-img">
@@ -689,40 +687,6 @@
     </div>
   </div>
 </section>
-
-<table class="table table-hover">
-                      <tr>
-                        <th>ID</th>
-                        <th>Nom Produit</th>
-                        <th>prix</th>
-                        <th>qteStock</th>
-                        <th>image</th>
-                        <th>marque</th>
-                        <th>remise</th>
-                        <th>produit_id</th>
-                      </tr>
-
-                      <% @produits.each do |produit| %>
-
-                        <tr>
-                          <td><%= produit.id %></td>
-                          <td><%= produit.nomProduit %></td>
-                          <td><%= produit.prix %></td>
-                          <td><%= produit.qteStock %></td>
-                          <div style="width: 10px; height: auto"><td><%= image_tag(produit.image , :size => '150x120') if produit.image.attached? %></td></div>
-                          <td><%= produit.marque %></td>
-                          <td><p class="badge bg-warning"><%= produit.remise %>%</p></td>
-                          <td><%= produit.categorie.nomCategorie %></td>
-                          <td><%= link_to 'Edit', edit_produit_path(produit),:class => 'badge bg-danger' %></td>
-                          <td><%= link_to 'Delete', produit_path(produit),
-                                          method: :delete,
-                                          data: { confirm: 'Are you sure?' },
-                                          :class => 'badge bg-danger' %></td>
-
-                        </tr>
-                      <%end %>
-
-                    </table>
 <!--================ End Blog Area =================-->
 
 <!--================ start footer Area  =================-->

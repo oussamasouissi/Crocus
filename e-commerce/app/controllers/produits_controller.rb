@@ -5,24 +5,19 @@ class ProduitsController < ApplicationController
     @categories = Categorie.all
     @marques = Produit.all.distinct.pluck(:marque)
   end
-
-  def show
-    @produit = Produit.find(params[:id])
-  end
-
   def edit
     authorize! :update, Produit
     @produit = Produit.find(params[:id])
   end
-
   def new
     authorize! :new, Produit
     @produit = Produit.new
     @categories = Categorie.all
   end
-
   def create
+
     @produit = Produit.new(product_params)
+
     if @produit.save
       redirect_to produits_path
     else
@@ -30,22 +25,21 @@ class ProduitsController < ApplicationController
       render 'new'
     end
   end
-
   def update
     @produit = Produit.find(params[:id])
+
     if @produit.update(product_params)
       redirect_to produits_path
     else
       render 'edit'
     end
   end
-
   def destroy
     @produit = Produit.find(params[:id])
     @produit.destroy
+
     redirect_to produits_path
   end
-
   def filtreProdMarque
     @categories = Categorie.all
     @marques = Produit.all.distinct.pluck(:marque)
@@ -108,8 +102,17 @@ class ProduitsController < ApplicationController
     # Chart appearance configuration
 
   end
- private
+
+
+
+
+  private
   def product_params
     params.require(:produit).permit(:id,:nomProduit, :prix , :qteStock , :marque , :remise , :categorie_id  , :image)
   end
+
+
+
+
+
 end

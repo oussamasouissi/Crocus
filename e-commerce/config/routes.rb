@@ -7,7 +7,6 @@ Rails.application.routes.draw do
       get '/filtreTriDecroissantPrix' , to: 'produits#filtreTriDecroissantPrix' , as: 'filterPrixDec'
       get '/statistiquesProduits' , to: 'produits#statistiquesProduits' , as:'statsProd'
 
-
     end
 
   end

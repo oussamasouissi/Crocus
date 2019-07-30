@@ -8,9 +8,14 @@ class Produit < ActiveRecord::Base
 
      produit.prix - (produit.prix * produit.remise / 100)
   end
+
+  def countViewPlusPlus(oldcountview)
+
+    oldcountview+1
+  end
   scope :filtreMarque, -> (marque) { where marque: marque }
   scope :filtreCrPrix, ->  { order(prix: :asc) }
   scope :filtreDcrPrix, ->  { order(prix: :desc) }
-
+  scope :filtreDcrCreation, ->  { order(created_by: :desc) }
 
 end

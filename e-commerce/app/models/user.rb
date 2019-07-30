@@ -10,7 +10,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable ,:omniauthable, :omniauth_providers => [:facebook]
-
+  scope :countUserAnnee, -> (y) { where("cast(strftime('%Y',created_at) as int) = ?", y).count()}
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
@@ -34,6 +34,12 @@ class User < ApplicationRecord
 
   def has_required_fields?
     self.description && self.nomSociete && self.numFournisseur
-        end
+  end
+
+
+
+  def self.calculPourcentageCreationComptes (countCurrentYear,countLastYear)
+    ((countCurrentYear.to_f/countLastYear.to_f)-1 ) *100
+  end
 
 end

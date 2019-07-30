@@ -8,6 +8,8 @@ class ProduitsController < ApplicationController
 
   def show
     @produit = Produit.find(params[:id])
+
+    @produit.update_column('countView', @produit.countViewPlusPlus(@produit.countView) ) if @produit.present?
   end
 
   def edit

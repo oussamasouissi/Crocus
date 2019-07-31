@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many  :commandes
+  has_many  :commandes  , dependent: :destroy
   validates :UserName, presence: true, length: {in: 2..20}, uniqueness: { case_sensitive: false} , :allow_blank => true
   validates :Name, presence: true, length: { in: 2..20 }
   validates :CIN, numericality: true ,length: { is: 8 }, uniqueness: { case_sensitive: false} ,:allow_blank => true

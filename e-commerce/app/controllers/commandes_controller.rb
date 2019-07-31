@@ -33,6 +33,7 @@ class CommandesController < ApplicationController
     end
 
     def destroy
+      @commande = Commande.find(params[:id])
       @commande.destroy
       flash[:danger] ="commande was successfully deleted"
       redirect_to @commande

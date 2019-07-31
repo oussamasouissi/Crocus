@@ -44,43 +44,48 @@
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
+
+
+
+
     <div class="row">
       <div class="col-md-6">
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="cont-fluid">
+        <!-- Main content -->
+        <section class="content">
+          <div class="cont-fluid">
 
 
-        <div class="card card-primary">
-          <div class="card-header">
-          <h3 class="card-title">Statistique N°1</h3>
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Statistique N°1</h3>
 
-          <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i></button>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card-body">
+
+                <h3>comptes utilisateur créés ce mois</h3>
+                <div id="chartContainer"></div>
+                <%=@chart.render() %>
+                <br/>
+
+              </div>
+              <!-- /.row -->
+            </div><!--/. container-fluid -->
+
+
           </div>
-        </div>
-          <div class="card-body">
-
-        <h3>Les produits les plus vendus</h3>
-        <div id="chart"></div>
-        <%=@chart.render() %>
-        <br/>
-
-          </div>
-        <!-- /.row -->
-      </div><!--/. container-fluid -->
 
 
-      </div>
-
-
-    </section>
+        </section>
 
       </div>
     </div>
+
 
     <div class="row">
       <div class="col-md-6">
@@ -102,9 +107,9 @@
               </div>
               <div class="card-body">
 
-                <h3>les Produits les plus visités</h3>
-                <div id="chartContainer"></div>
-                <%=@chart2.render() %>
+
+                <div id="chart"></div>
+                <%=@Chart2.render() %>
                 <br/>
 
               </div>
@@ -119,8 +124,6 @@
 
       </div>
     </div>
-
-
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -134,6 +137,7 @@
   <!-- Main Footer -->
 
 </div>
+
 
 <!-- ./wrapper -->
 

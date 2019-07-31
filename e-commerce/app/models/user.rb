@@ -11,6 +11,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable ,:omniauthable, :omniauth_providers => [:facebook]
   scope :countUserAnnee, -> (y) { where("cast(strftime('%Y',created_at) as int) = ?", y).count()}
+  scope :this_month, -> { where(created_at: Time.now.beginning_of_month..Time.now.end_of_month) }
+  scope :countByDay, -> (d) {where("cast(strftime('%d',created_at) as int) = ?", d).count()}
+  scope :countUserByMonthYear,  -> (m,y) { where( "cast(strftime('%m',created_at) as int) = ?", m).where("cast(strftime('%Y',created_at) as int) = ?", y).count()}
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]

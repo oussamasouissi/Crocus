@@ -75,7 +75,7 @@ class ProduitsController < ApplicationController
 
 
   def statistiquesProduits
-
+#-----------------------Statistique 1----------------------------------#
     @produits = Produit.limit(5).order(nbrDeVente: :desc)
     @prodlistVente = @produits.map do |p|
       {
@@ -83,11 +83,6 @@ class ProduitsController < ApplicationController
           :value => p.nbrDeVente.to_s
       }
     end
-
-
-
-
-
 
     chartData = {
         "chart": {
@@ -109,16 +104,65 @@ class ProduitsController < ApplicationController
 
     # Chart rendering
     @chart = Fusioncharts::Chart.new({
-                                        width: "600",
+                                        width: "800",
                                         height: "400",
                                         type: "pie3d",
                                         renderAt: "chart",
                                         dataSource: chartData
                                     })
 
-
-
+#-----------------Statistiques 2----------------------------------
     # Chart appearance configuration
+    @produitsMostSeen = Produit.limit(8).order(countView: :desc)
+    @produitsMostSeenJson = @produitsMostSeen.map do |p|
+      {
+          p.nomProduit => p.countView.to_s
+      }
+      end
+
+
+    chartAppearancesConfigObj = Hash.new
+    chartAppearancesConfigObj = {
+        "caption" => "les Produits les plus visités",
+
+        "xAxisName" => "Produits",
+        "yAxisName" => "Nombre de visite",
+        "numberSuffix" => " visites",
+        "theme" => "fusion"
+    }
+
+    # An array of hash objects which stores data
+    chartDataObj = @produitsMostSeenJson
+
+    # Chart data template to store data in "Label" & "Value" format
+    labelValueTemplate = "{ \"label\": \"%s\", \"value\": \"%s\" },"
+
+    # Chart data as JSON string
+    labelValueJSONStr = ""
+
+    chartDataObj.each {|item|
+      data = labelValueTemplate % [item.keys[0], item[item.keys[0]]]
+      labelValueJSONStr.concat(data)
+    }
+
+    # Removing trailing comma character
+    labelValueJSONStr = labelValueJSONStr.chop
+
+    # Chart JSON data template
+    chartJSONDataTemplate = "{ \"chart\": %s, \"data\": [%s] }"
+
+    # Final Chart JSON data from template
+    chartJSONDataStr = chartJSONDataTemplate % [chartAppearancesConfigObj.to_json, labelValueJSONStr]
+
+    # Chart rendering
+    @chart2 = Fusioncharts::Chart.new({
+                                        width: "1000",
+                                        height: "500",
+                                        type: "column2d",
+                                        renderAt: "chartContainer",
+                                        dataSource: chartJSONDataStr
+                                    })
+
 
   end
  private

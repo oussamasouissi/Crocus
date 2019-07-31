@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       get 'homeAdmin'
       get 'home'
       get 'listUsers' , to: 'user#listUsers' , as: 'listUsers'
+      get 'statistique' , to:'user#statistiqueUser' , as: 'statistiquesProduits'
     end
 end
 

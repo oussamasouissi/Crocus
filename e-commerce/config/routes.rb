@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :produits do
+    resources :comments
     collection do
       get '/filtreProdMarque/:marque' , to: 'produits#filtreProdMarque' , as: 'filterMarque'
       get '/filtreTriCroissantPrix' , to: 'produits#filtreTriCroissantPrix' , as: 'filterPrix'

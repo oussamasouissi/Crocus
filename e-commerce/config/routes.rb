@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  root  'user#home'
   resources :produits do
     collection do
       get '/filtreProdMarque/:marque' , to: 'produits#filtreProdMarque' , as: 'filterMarque'
@@ -33,13 +33,12 @@ Rails.application.routes.draw do
     end
 end
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users , :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
 
 
 
-  root 'home#index'
+
   get "/:page" => "static#show"
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

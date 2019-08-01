@@ -37,7 +37,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/admin/#">Home/</a></li>
-              <%= link_to "Logout", destroy_user_session_path, method: :delete %>/
+              <%= link_to "Logout", destroy_user_session_path, method: :delete %>
               <li class="breadcrumb-item active">Dashboard v2</li>
             </ol>
           </div><!-- /.col -->
@@ -272,7 +272,7 @@
 
               <div class="info-box-content">
                 <span class="info-box-text">Commandes en cours</span>
-                <span class="info-box-number"><%=@commandeEnCours %></span>
+                <span class="info-box-number"><%= @CommandeEnCours %></span>
               </div>
               <!-- /.info-box-content -->
             </div>

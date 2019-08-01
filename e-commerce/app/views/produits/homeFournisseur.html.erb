@@ -36,7 +36,7 @@
     <div class="container">
       <div class="banner_content d-md-flex justify-content-between align-items-center">
         <div class="mb-3 mb-md-0">
-          <h1>Mes Produits les plus vendus</h1>
+          <h1 style="color:#FFF799">Mes Produits les plus vendus</h1>
 
       </div>
     </div>
@@ -117,7 +117,7 @@
     <div class="container">
       <div class="banner_content d-md-flex justify-content-between align-items-center">
         <div class="mb-3 mb-md-0">
-          <h1>Dernier produits ajoutés</h1>
+          <h1 style="color:#FFF799">Dernier produits ajoutés</h1>
         </div>
       </div>
     </div>
@@ -181,6 +181,78 @@
     </div>
   </div>
 </section>
+
+
+<section class="banner_area">
+  <div class="banner_inner d-flex align-items-center">
+    <div class="container">
+      <div class="banner_content d-md-flex justify-content-between align-items-center">
+        <div class="mb-3 mb-md-0">
+          <h1 style="color:#FFF799">Mes produits les plus visités</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="cat_product_area section_gap">
+  <div class="container">
+    <div class="row flex-row-reverse">
+      <div class="col-lg-9">
+
+
+
+        <div class="latest_product_inner">
+          <div class="row">
+            <% @produitsMostSeen.each do |produit| %>
+              <div class="col-lg-4 col-md-8">
+                <div class="single-product">
+                  <div class="product-img">
+                    <%= image_tag(produit.image , :size => '150x200' , :class => "card-img") if produit.image.attached? %>
+
+                    <div class="p_icon">
+                      <%= link_to '', edit_produit_path(produit),:class => 'ti-file' %>
+
+
+
+
+                      <%= link_to '', produit_path(produit),
+                                  method: :delete,
+                                  data: { confirm: 'Are you sure?' },
+                                  :class => 'ti-eraser' %>
+
+                      <a href="/#">
+                        <i class="ti-info"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="product-btm">
+                    <a href="/#" class="d-block">
+                      <h4><%= produit.nomProduit %></h4>
+                    </a>
+                    <div class="mt-3">
+                      <span class="mr-4"><%= produit.prixApresRemise(produit) %></span>
+                      <del><%= produit.prix %></del>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 
 <!--================End Category Product Area =================-->

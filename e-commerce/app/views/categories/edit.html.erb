@@ -68,7 +68,12 @@
                       <%= f.text_field :nomCategorie , :class => 'form-control' %>
                     </div>
                   </div>
-
+                  <div class="field">
+                    <%= f.label "Type de categorie" %><br />
+                    <div class="controls">
+                      <%= f.select(:categorieType, options_for_select([['Blog','blog'],['Produit','produit']])) %>
+                    </div>
+                  </div>
 
                 </div>
                 <!-- /.card-body -->

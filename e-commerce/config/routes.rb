@@ -18,9 +18,11 @@ Rails.application.routes.draw do
 
     collection do
       get '/showFiltreCat/:id' , to: 'categories#showFiltreCat' , as: 'filter'
+      get '/showFiltreCatBlog/:id' , to: 'categories#showFiltreCatBlog' , as: 'filterBlog'
     end
   end
   resources :commandes
+  resources :blogs
   resources :user do
 
     collection do

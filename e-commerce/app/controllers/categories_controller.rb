@@ -39,14 +39,18 @@ class CategoriesController < ApplicationController
       end
     end
     def showFiltreCat
-      @categories = Categorie.all
+      @categories = Categorie.where(categorieType: "produit")
       @marques = Produit.all.distinct.pluck(:marque)
       @categorie = Categorie.find(params[:id])
+    end
 
-
+    def showFiltreCatBlog
+      @categories = Categorie.where(categorieType: "blog")
+      @categorie = Categorie.find(params[:id])
+      @recentArticle=Blog.order(created_at: :desc)
     end
     protected
     def categorie_params
-      params.require(:categorie).permit(:nomCategorie)
+      params.require(:categorie).permit(:nomCategorie , :categorieType)
     end
   end

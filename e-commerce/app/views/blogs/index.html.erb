@@ -1,0 +1,433 @@
+<% if user_signed_in? %>
+  <% if current_user.roles == "admin" %>
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+      <title>AdminLTE 3 | Dashboard 2</title>
+
+      <!-- Font Awesome Icons -->
+      <link rel="stylesheet" href="/admin/plugins/fontawesome-free/css/all.min.css">
+      <!-- overlayScrollbars -->
+      <link rel="stylesheet" href="/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+      <!-- Theme style -->
+      <link rel="stylesheet" href="/admin/dist/css/adminlte.min.css">
+      <!-- Google Font: Source Sans Pro -->
+      <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    </head>
+    <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+      <!-- Navbar -->
+      <%= render 'user/headerAdmin' %>
+      <!-- /.navbar -->
+
+      <!-- Main Sidebar Container -->
+      <%= render 'user/sideBarAdmin' %>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Gestion des articles</h1>
+              </div><!-- /.col -->
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item"><a href="/admin/#">Home</a></li>
+                  <li class="breadcrumb-item active">Gestion des articles</li>
+                </ol>
+              </div><!-- /.col -->
+            </div><!-- /.row -->
+          </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <!-- Main content -->
+        <section class="content">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Liste des articles</h3>
+
+                    <div class="card-tools">
+                      <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                          <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body table-responsive p-0">
+                    <table class="table table-hover">
+                      <tr>
+                        <th>ID</th>
+                        <th>Nom </th>
+                        <th>Description</th>
+                        <th>image</th>
+                        <th>Categorie de l'article</th>
+                        <th>Date De creation de l'article</th>
+                      </tr>
+
+
+                      <% @articles.each do |article| %>
+
+                        <tr>
+                          <td><%= article.id %></td>
+                          <td><p><%= article.nom %></p></td>
+                          <td><%= article.description%></td>
+                          <div style="width: 10px; height: auto"><td><%= image_tag(article.image , :size => '150x120') if article.image.attached? %></td></div>
+                          <td><%= article.categorie.nomCategorie %></td>
+                          <td><%=article.created_at %></td>
+
+
+                          <td><%= link_to 'Delete', blog_path(article),
+                                          method: :delete,
+                                          data: { confirm: 'Are you sure?' },
+                                          :class => 'badge bg-danger' %></td>
+
+                          <td><%= link_to 'Edit', edit_blog_path(article),:class => 'badge bg-danger' %></td>
+                        </tr>
+                      <%end %>
+
+                    </table>
+                  </div>
+                  <%= link_to 'Ajouter un blog', new_blog_path,:class => 'btn btn-block btn-outline-primary btn-lg' %>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
+            </div><!-- /.row -->
+          </div><!-- /.container-fluid -->
+
+        </section>
+      </div>
+
+      <!-- /.content -->
+
+      <!-- /.content-wrapper -->
+
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+      </aside>
+      <!-- /.control-sidebar -->
+
+      <!-- Main Footer -->
+
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="/admin/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/admin/dist/js/adminlte.js"></script>
+
+    <!-- OPTIONAL SCRIPTS -->
+    <script src="/admin/dist/js/demo.js"></script>
+
+    <!-- PAGE PLUGINS -->
+    <!-- jQuery Mapael -->
+    <script src="/admin/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+    <script src="/admin/plugins/raphael/raphael.min.js"></script>
+    <script src="/admin/plugins/jquery-mapael/jquery.mapael.min.js"></script>
+    <script src="/admin/plugins/jquery-mapael/maps/world_countries.min.js"></script>
+    <!-- ChartJS -->
+    <script src="/admin/plugins/chart.js/Chart.min.js"></script>
+
+    <!-- PAGE SCRIPTS -->
+    <script src="/admin/dist/js/pages/dashboard2.js"></script>
+    </body>
+    </html>
+
+  <%else %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+  <link rel="icon" href="/img/favicon.png" type="image/png" />
+  <title>Eiser ecommerce</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" />
+  <link rel="stylesheet" href="/vendors/linericon/style.css" />
+  <link rel="stylesheet" href="/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="/css/themify-icons.css" />
+  <link rel="stylesheet" href="/vendors/owl-carousel/owl.carousel.min.css" />
+  <link rel="stylesheet" href="/vendors/lightbox/simpleLightbox.css" />
+  <link rel="stylesheet" href="/vendors/nice-select/css/nice-select.css" />
+  <link rel="stylesheet" href="/vendors/animate-css/animate.css" />
+  <link rel="stylesheet" href="/vendors/jquery-ui/jquery-ui.css" />
+  <!-- main css -->
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/responsive.css" />
+</head>
+
+<body>
+<!--================Header Menu Area =================-->
+<%= render 'user/headerClientFour' %>
+<!--================Header Menu Area =================-->
+
+<!--================Home Banner Area =================-->
+<section class="banner_area">
+  <div class="banner_inner d-flex align-items-center">
+    <div class="container">
+      <div
+        class="banner_content d-md-flex justify-content-between align-items-center"
+      >
+        <div class="mb-3 mb-md-0">
+          <h2>Blog</h2>
+          <p>Very us move be blessed multiply night</p>
+        </div>
+        <div class="page_link">
+          <a href="index.html">Home</a>
+          <a href="blog.html">Blog </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="blog_area section_gap">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mb-5 mb-lg-0">
+        <div class="blog_left_sidebar">
+          <% @articles.each do |article| %>
+          <article class="blog_item">
+            <div class="blog_item_img">
+
+              <%= image_tag(article.image , :class => "card-img rounded-0") if article.image.attached? %>
+              <a href="#" class="blog_item_date">
+                <h3><%=article.created_at.strftime("%d") %></h3>
+                <p><%=article.created_at.strftime("%B") %></p>
+                <h3><%=article.created_at.strftime("%Y") %></h3>
+              </a>
+            </div>
+
+            <div class="blog_details">
+
+                <h2 ><%= link_to article.nom, blog_path(article),:class => "d-inline-block" %></h2>
+
+              <p><%=  truncate(article.description,:length => 150) %></p>
+              <ul class="blog-info-link">
+                <li><i class="ti-user"></i> <%= article.categorie.nomCategorie %></li>
+                <li><a href="#"><i class="ti-comments"></i> 03 Comments</a></li>
+              </ul>
+            </div>
+          </article>
+            <%end %>
+
+
+
+
+
+
+
+          <nav class="blog-pagination justify-content-center d-flex">
+            <ul class="pagination">
+              <li class="page-item">
+                <a href="#" class="page-link" aria-label="Previous">
+                                      <span aria-hidden="true">
+                                          <span class="ti-arrow-left"></span>
+                                      </span>
+                </a>
+              </li>
+              <li class="page-item">
+                <a href="#" class="page-link">1</a>
+              </li>
+              <li class="page-item active">
+                <a href="#" class="page-link">2</a>
+              </li>
+              <li class="page-item">
+                <a href="#" class="page-link" aria-label="Next">
+                                      <span aria-hidden="true">
+                                          <span class="ti-arrow-right"></span>
+                                      </span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="blog_right_sidebar">
+          <aside class="single_sidebar_widget search_widget">
+            <form action="#">
+              <div class="form-group">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="Search Keyword">
+                  <div class="input-group-append">
+                    <button class="btn" type="button"><i class="ti-search"></i></button>
+                  </div>
+                </div>
+              </div>
+              <button class="main_btn rounded-0 w-100" type="submit">Search</button>
+            </form>
+          </aside>
+
+          <aside class="single_sidebar_widget post_category_widget">
+            <h4 class="widget_title">Category</h4>
+            <ul class="list cat-list">
+              <% @categories.each do |categorie| %>
+              <li>
+
+
+
+                  <p><%= link_to(categorie.nomCategorie,  filterBlog_categories_path(categorie.id)) %>(<%=@articles.countCategorieArticle(categorie) %>)</p>
+
+              </li>
+              <%end %>
+            </ul>
+          </aside>
+
+          <aside class="single_sidebar_widget popular_post_widget">
+
+            <h3 class="widget_title">Recent Post</h3>
+            <% @recentArticle.each do |article| %>
+            <div class="media post_item">
+              <%= image_tag(article.image , :class => "card-img rounded-0") if article.image.attached? %>
+              <div class="media-body">
+                <h3 style="color: #0b0c0d" ><%= link_to article.nom, blog_path(article)%></h3>
+                <%=article.created_at.strftime("%d-%B-%Y") %>
+              </div>
+            </div>
+              <%end %>
+
+          </aside>
+
+
+
+
+
+
+          <aside class="single_sidebar_widget newsletter_widget">
+            <h4 class="widget_title">Newsletter</h4>
+
+            <form action="#">
+              <div class="form-group">
+                <input type="email" class="form-control" placeholder="Enter email" required>
+              </div>
+              <button class="main_btn rounded-0 w-100" type="submit">Subscribe</button>
+            </form>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--================Blog Area =================-->
+
+<!--================ start footer Area  =================-->
+<footer class="footer-area section_gap">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-2 col-md-6 single-footer-widget">
+        <h4>Top Products</h4>
+        <ul>
+          <li><a href="#">Managed Website</a></li>
+          <li><a href="#">Manage Reputation</a></li>
+          <li><a href="#">Power Tools</a></li>
+          <li><a href="#">Marketing Service</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-md-6 single-footer-widget">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">Jobs</a></li>
+          <li><a href="#">Brand Assets</a></li>
+          <li><a href="#">Investor Relations</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-md-6 single-footer-widget">
+        <h4>Features</h4>
+        <ul>
+          <li><a href="#">Jobs</a></li>
+          <li><a href="#">Brand Assets</a></li>
+          <li><a href="#">Investor Relations</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-md-6 single-footer-widget">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Guides</a></li>
+          <li><a href="#">Research</a></li>
+          <li><a href="#">Experts</a></li>
+          <li><a href="#">Agencies</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4 col-md-6 single-footer-widget">
+        <h4>Newsletter</h4>
+        <p>You can trust us. we only send promo offers,</p>
+        <div class="form-wrap" id="mc_embed_signup">
+          <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                method="get" class="form-inline">
+            <input class="form-control" name="EMAIL" placeholder="Your Email Address" onfocus="this.placeholder = ''"
+                   onblur="this.placeholder = 'Your Email Address '" required="" type="email">
+            <button class="click-btn btn btn-default">Subscribe</button>
+            <div style="position: absolute; left: -5000px;">
+              <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+            </div>
+
+            <div class="info"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom row align-items-center">
+
+      <div class="col-lg-4 col-md-12 footer-social">
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-dribbble"></i></a>
+        <a href="#"><i class="fa fa-behance"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!--================ End footer Area  =================-->
+
+
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/popper.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/stellar.js"></script>
+<script src="/vendors/lightbox/simpleLightbox.min.js"></script>
+<script src="/vendors/nice-select/js/jquery.nice-select.min.js"></script>
+<script src="/vendors/isotope/imagesloaded.pkgd.min.js"></script>
+<script src="/vendors/isotope/isotope-min.js"></script>
+<script src="/vendors/owl-carousel/owl.carousel.min.js"></script>
+<script src="/vendors/jquery-ui/jquery-ui.js"></script>
+<script src="/js/jquery.ajaxchimp.min.js"></script>
+<script src="/js/mail-script.js"></script>
+<script src="/vendors/jquery-ui/jquery-ui.js"></script>
+<script src="/js/theme.js"></script>
+</body>
+
+</html>
+<%end %>
+<%end %>

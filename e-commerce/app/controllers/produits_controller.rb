@@ -2,7 +2,7 @@ class ProduitsController < ApplicationController
 
   def index
     @produits = Produit.all
-    @categories = Categorie.all
+    @categories = Categorie.where(categorieType: "produit")
     @marques = Produit.all.distinct.pluck(:marque)
   end
 
@@ -70,6 +70,7 @@ class ProduitsController < ApplicationController
   def homeFournisseur
     @produitsPlusVendus = Produit.limit(6).where(user_id: current_user.id).order(nbrDeVente: :desc)
     @produitsDernierAjout = Produit.limit(3).where(user_id: current_user.id).order(created_at: :desc)
+    @produitsMostSeen = Produit.limit(6).where(user_id: current_user.id).order(countView: :desc)
   end
 
 

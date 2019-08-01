@@ -347,7 +347,7 @@
                   <div class="form-group">
                     <label>Catégorie de produit</label>
 
-                    <% options = options_from_collection_for_select(Categorie.all, 'id', 'nomCategorie') %>
+                    <% options = options_from_collection_for_select(Categorie.where(categorieType: "produit"), 'id', 'nomCategorie') %>
                     <%= f.select :categorie_id,  options  %>
 
 
@@ -366,7 +366,7 @@
                   </div>
                   <%if current_user.roles == "fournisseur" %>
                     <div class="form-group">
-                      <label for="exampleInputFile"><p>  Image de produit</p> </label>
+
                       <div class="input-group">
 
                         <div class="input-group-append">

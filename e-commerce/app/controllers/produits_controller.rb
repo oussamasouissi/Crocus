@@ -20,7 +20,7 @@ class ProduitsController < ApplicationController
   def new
     authorize! :new, Produit
     @produit = Produit.new
-    @categories = Categorie.all
+    @categories = Categorie.where(categorieType: "produit")
   end
 
   def create
@@ -49,17 +49,17 @@ class ProduitsController < ApplicationController
   end
 
   def filtreProdMarque
-    @categories = Categorie.all
+    @categories = Categorie.where(categorieType: "produit")
     @marques = Produit.all.distinct.pluck(:marque)
     @produits = Produit.filtreMarque(params[:marque])
   end
   def filtreTriCroissantPrix
-    @categories = Categorie.all
+    @categories = Categorie.where(categorieType: "produit")
     @marques = Produit.all.distinct.pluck(:marque)
     @produits = Produit.filtreCrPrix()
   end
   def filtreTriDecroissantPrix
-    @categories = Categorie.all
+    @categories = Categorie.where(categorieType: "produit")
     @marques = Produit.all.distinct.pluck(:marque)
     @produits = Produit.filtreDcrPrix()
   end

@@ -6,7 +6,9 @@
           <div class="float-left">
             <p>Phone: +01 256 25 235</p>
             <p>email: info@eiser.com</p>
-
+            <% if user_signed_in? %>
+            <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+              <%end %>
           </div>
         </div>
         <div class="col-lg-5">
@@ -54,11 +56,10 @@
                 <li class="nav-item active">
                   <a class="nav-link" href="/index.html">Home</a>
                 </li>
-                <li class="nav-item submenu dropdown">
-                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                     aria-expanded="false">
-                  <%= link_to "About", "/about"%></a>
+                <li class="nav-item ">
+                  <%= link_to "About", "/about" , :class => "nav-link"%>
                 </li>
+
                 <li class="nav-item submenu dropdown">
                   <a href="/#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                      aria-expanded="false">A propos</a>
@@ -123,7 +124,8 @@
                      aria-expanded="false">Boutique</a>
                   <ul class="dropdown-menu">
                     <li class="nav-item">
-                      <a class="nav-link" href="/tracking.html">Produits</a>
+                      <%= link_to "Les produits", produits_path, class: "nav-link" %>
+
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="/elements.html">Catégories</a>

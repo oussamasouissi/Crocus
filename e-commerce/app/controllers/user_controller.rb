@@ -7,7 +7,9 @@ class UserController < ApplicationController
   def homeAdmin
     authorize! :manage, :all
     @user = User.find(current_user.id)
-    @visitor = Produit.sum(:countView)
+    sql = "select * FROM ahoy_visits"
+    records_array = ActiveRecord::Base.connection.execute(sql)
+    @visitor = records_array.size
     @activeUsers = User.count()
     @totalSales = Produit.where(Produit.arel_table[:remise].gt(0)).count()
     @newCommandes=Commande.this_month.count()

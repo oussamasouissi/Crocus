@@ -9,6 +9,7 @@ class Commande < ApplicationRecord
     scope :countOrderByMonthYear,  -> (m,y) { where( "cast(strftime('%m',created_at) as int) = ?", m).where("cast(strftime('%Y',created_at) as int) = ?", y).count()}
     scope :countCommandeAnnee, -> (y) { where("cast(strftime('%Y',created_at) as int) = ?", y).count()}
 
+    scope :yearToDate,  -> (m,y) { where( "cast(strftime('%m',created_at) as int) <= ?", m).where("cast(strftime('%Y',created_at) as int) = ?", y).count()}
     def self.calculPourcentagePassageCommande (countCurrentYear,countLastYear)
         ((countCurrentYear.to_f/countLastYear.to_f)-1 ) *100
     end

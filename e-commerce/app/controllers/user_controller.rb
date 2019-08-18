@@ -3,6 +3,9 @@ class UserController < ApplicationController
     @produits = Produit.all
 
   end
+  def name
+    email.split('@')[0]
+  end
 
   def homeAdmin
     authorize! :manage, :all

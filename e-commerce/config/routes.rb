@@ -26,6 +26,9 @@ Rails.application.routes.draw do
       get '/statistiquesCommande' , to: 'commandes#statistiquesCommande' , as:'statsCommande'
     end
   end
+  resources :chat_rooms , only: [:new, :create, :show, :index ,:destroy]
+  mount ActionCable.server => '/cable'
+
   resources :blogs
   resources :user do
 

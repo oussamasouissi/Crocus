@@ -18,3 +18,4 @@
 //= require popper
 //= require_tree ./material
 //= require_tree ./fusioncharts
+//= require cable
